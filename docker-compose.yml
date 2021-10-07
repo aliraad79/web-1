@@ -27,3 +27,17 @@ services:
       - ./:/app
     depends_on:
       - "redis"
+
+  locust:
+    image: locustio/locust
+    ports:
+     - "8089:8089"
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locust/locustfile.py --master -H http://locust:8089
+  
+  locust_worker:
+    image: locustio/locust
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locust/locustfile.py --worker --master-host locust
