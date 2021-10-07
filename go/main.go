@@ -37,7 +37,6 @@ func main() {
 	r.POST("/go/sha256", func(c *gin.Context) {
 		var input_json INPUT
 		c.BindJSON(&input_json)
-		fmt.Println(input_json)
 		var input = input_json.Input
 
 		if input == "" {
@@ -52,7 +51,7 @@ func main() {
 			client.Set(client.Context(), input, sha, 0)
 			client.Set(client.Context(), sha, input, 0)
 
-			c.JSON(http.StatusOK, gin.H{"NAME": input, "SHA": sha})
+			c.JSON(http.StatusOK, gin.H{"Input": input, "SHA": sha})
 		}
 
 	})
