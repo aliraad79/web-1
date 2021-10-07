@@ -3,7 +3,6 @@ package main
 import (
 	"crypto/sha256"
 	"encoding/hex"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -29,7 +28,7 @@ func main() {
 	r := gin.Default()
 	r.Use(CORSMiddleware())
 	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     "redis:6379",
 		Password: "",
 		DB:       0,
 	})

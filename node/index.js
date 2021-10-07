@@ -12,7 +12,7 @@ const port = 3000
 
 
 const client = redis.createClient({
-  host: 'localhost',
+  host: 'redis',
   port: 6379,
 });
 
@@ -27,6 +27,7 @@ app.post('/node/sha256', (req, res) => {
     res.send({ Result: "Bad Parameter" })
   } else if (req.body.Input.length < 8) {
     res.status(422);
+
     res.send({ Result: "At least 8 chars required" })
   }
   else {
@@ -61,4 +62,5 @@ app.get('/node/sha256', (req, res) => {
 })
 
 app.listen(port, () => {
+  console.log("Node Started at port " + port)
 })
