@@ -1,0 +1,110 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            color: white;
+        }
+
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .left {
+            left: 0;
+            background-color: #111;
+        }
+
+        .right {
+            right: 0;
+            background-color: red;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .centered img {
+            width: 150px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="split left">
+        <div class="centered">
+            <h2>Golang</h2>
+            <label for="fname">Input:</label>
+            <input type="text" id="go_input" name="Input"><br><br>
+            <input id='go_button' type='button' value="Submit"><br><br>
+            <h3 id="go_response"></h3>
+        </div>
+    </div>
+
+    <div class="split right">
+        <div class="centered">
+            <h2>Node</h2>
+            <label for="fname">Input:</label>
+            <input type="text" id="node_input" name="Input"><br><br>
+            <input id='node_button' type='submit' value="Submit">
+        </div>
+    </div>
+</body>
+
+<script>
+    document.getElementById('go_button').onclick = function () {
+        const url = window.location.href.split(":")[0] + ":" + window.location.href.split(":")[1] + ":8080/go/sha256";
+        const value = document.getElementById('go_input').value
+        let data = { Input: value };
+
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data)
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            if (data.Result == null){
+                document.getElementById('go_response').innerHTML = data.SHA
+            }
+            else{
+                document.getElementById('go_response').innerHTML = data.Result
+            }
+        });
+    };
+
+    document.getElementById('go_button').onclick = function () {
+        const url = window.location.href.split(":")[0] + ":" + window.location.href.split(":")[1] + ":8081/node/sha256";
+        const value = document.getElementById('go_input').value
+        let data = { Input: value };
+
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data)
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            if (data.Result == null){
+                document.getElementById('go_response').innerHTML = data.SHA
+            }
+            else{
+                document.getElementById('go_response').innerHTML = data.Result
+            }
+        });
+    };
+</script>
+
+</html>
