@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/node,go
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,go
+# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,go
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,node,go
 
 ### Go ###
 # Binaries for programs and plugins
@@ -147,4 +147,20 @@ dist
 # Serverless Webpack directories
 .webpack/
 
-# End of https://www.toptal.com/developers/gitignore/api/node,go
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,go
