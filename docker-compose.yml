@@ -2,12 +2,12 @@ version: "3.9"
 
 services:
   redis:
-    image: redis
+    image: redis:6-alpine
     ports:
       - 6379:6379
   
   node:
-    image: node
+    image: node:14.18-alpine
     command: sh -c "yarn install && yarn run run"
     ports:
       - 3000:3000
@@ -18,7 +18,7 @@ services:
       - "redis"
 
   go:
-    image: golang
+    image: golang:1.17-alpine
     command: sh -c "go get && go run main.go"
     ports:
       - 8080:8080
