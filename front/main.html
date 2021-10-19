@@ -61,6 +61,7 @@
             <label for="fname">Input:</label>
             <input type="text" id="node_input" name="Input"><br><br>
             <input id='node_button' type='submit' value="Submit">
+            <h3 id="node_response"></h3>
         </div>
     </div>
 </body>
@@ -69,26 +70,16 @@
     document.getElementById('go_button').onclick = function () {
         const url = window.location.href.split(":")[0] + ":" + window.location.href.split(":")[1] + ":8080/go/sha256";
         const value = document.getElementById('go_input').value
-        let data = { Input: value };
-
-        fetch(url, {
-            method: "POST",
-            body: JSON.stringify(data)
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            if (data.Result == null){
-                document.getElementById('go_response').innerHTML = data.SHA
-            }
-            else{
-                document.getElementById('go_response').innerHTML = data.Result
-            }
-        });
+        send_post(url, value, "go_response");
     };
 
-    document.getElementById('go_button').onclick = function () {
+    document.getElementById('node_button').onclick = function () {
         const url = window.location.href.split(":")[0] + ":" + window.location.href.split(":")[1] + ":8081/node/sha256";
-        const value = document.getElementById('go_input').value
+        const value = document.getElementById('node_input').value
+        send_post(url, valuem, "node_response");
+    };
+
+    function send_post(url, value, reponse_field_name) {
         let data = { Input: value };
 
         fetch(url, {
@@ -97,14 +88,12 @@
         }).then(function (response) {
             return response.json();
         }).then(function (data) {
-            if (data.Result == null){
-                document.getElementById('go_response').innerHTML = data.SHA
-            }
-            else{
-                document.getElementById('go_response').innerHTML = data.Result
-            }
+            if (data.Result == null)
+                document.getElementById(reponse_field_name).innerHTML = data.SHA
+            else
+                document.getElementById(reponse_field_name).innerHTML = data.Result
         });
-    };
+    }
 </script>
 
 </html>
