@@ -41,3 +41,14 @@ services:
     volumes:
       - ./:/mnt/locust
     command: -f /mnt/locust/locust/locustfile.py --worker --master-host locust
+  
+  nginx:
+    image: nginx:1.17.10-alpine
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/template:/template
+    ports:
+      - "80:80"
+    depends_on:
+      - go
+      - node
