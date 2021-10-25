@@ -68,15 +68,15 @@
 
 <script>
     document.getElementById('go_button').onclick = function () {
-        const url = window.location.href.split(":")[0] + ":" + window.location.href.split(":")[1] + ":8080/go/sha256";
+        const url = "/go/sha256";
         const value = document.getElementById('go_input').value
         send_post(url, value, "go_response");
     };
 
     document.getElementById('node_button').onclick = function () {
-        const url = window.location.href.split(":")[0] + ":" + window.location.href.split(":")[1] + ":8081/node/sha256";
+        const url = "/node/sha256";
         const value = document.getElementById('node_input').value
-        send_post(url, valuem, "node_response");
+        send_post(url, value, "node_response");
     };
 
     function send_post(url, value, reponse_field_name) {
