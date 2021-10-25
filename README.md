@@ -10,3 +10,16 @@ All files and requirements can be installed via docker. so just install [Docker]
     docker-compose up -d
 ```
 in terminal.
+
+
+### Test
+run 
+```sh
+    docker-compose up -d --scale worker=4
+```
+open `http://localhost:8089` and start test with host `http://ngingx`
+then run 
+```sh
+    docker-compose up --scale worker=4 --scale go=3 --scale node=3
+```
+and try it again
