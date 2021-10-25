@@ -28,7 +28,8 @@ func main() {
 	r := gin.Default()
 	r.Use(CORSMiddleware())
 	client := redis.NewClient(&redis.Options{
-		Addr:     "redis:6379",
+		// Addr:     "redis:6379",	// For running with docker
+		Addr:     "localhost:6379",	// For running individually
 		Password: "",
 		DB:       0,
 	})

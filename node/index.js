@@ -12,7 +12,8 @@ const port = 3000
 
 
 const client = redis.createClient({
-  host: 'redis',
+  host: 'redis',  // For running with docker
+  // host: 'localhost', // For running individually
   port: 6379,
 });
 

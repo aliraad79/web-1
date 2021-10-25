@@ -46,7 +46,7 @@ services:
     image: nginx:1.17.10-alpine
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/template:/template
+      - ./front:/template
     ports:
       - "80:80"
     depends_on:
