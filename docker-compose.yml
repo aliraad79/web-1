@@ -10,7 +10,7 @@ services:
     image: node:14.18-alpine
     command: sh -c "yarn install && yarn run run"
     ports:
-      - 3000:3000
+      - 3000-3005:3000
     working_dir: /app/node
     volumes:
       - ./:/app
@@ -21,7 +21,7 @@ services:
     image: golang:1.17-alpine
     command: sh -c "go get && go run main.go"
     ports:
-      - 8080:8080
+      - 8080-8085:8080
     working_dir: /app/go
     volumes:
       - ./:/app
